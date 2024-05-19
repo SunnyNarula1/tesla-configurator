@@ -1,4 +1,4 @@
-import { ColorModel } from "./color-modle";
+import { ColorModel } from "./ColorModel";
 
 export class Model{
     code!:string;
