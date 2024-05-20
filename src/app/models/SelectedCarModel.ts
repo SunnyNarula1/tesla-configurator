@@ -1,11 +1,11 @@
 import { Model } from "./model";
 import { ColorModel } from "./ColorModel";
-import { ConfigModle } from "./ConfigModel";
+import { ConfigModel } from "./ConfigModel";
 
 export class SelectedCarModel{
     chooseModel?:Model=undefined;
     chooseColor?:ColorModel=undefined;
-    chooseConfig?:ConfigModle=undefined;
+    chooseConfig?:ConfigModel=undefined;
     tow:boolean=false;
     yoke:boolean= false;
 
@@ -21,5 +21,17 @@ export class SelectedCarModel{
             return false;
         }
         return true;
+    }
+    getTotalCost():number{
+        var towYokeCost=1000;
+        var sum = (this.chooseColor?.price??0)+(this.chooseConfig?.price??0);
+        if(this.tow){
+            sum+=towYokeCost;
+        }
+        if(this.yoke){
+            sum+=towYokeCost;
+        }
+        return sum;
+
     }
 }

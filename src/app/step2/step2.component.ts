@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigOptionalModel } from '../models/ConfigOptionalModel';
-import { ConfigModle } from '../models/ConfigModel';
+import { ConfigModel } from '../models/ConfigModel';
 import { SelectedCarModel } from '../models/SelectedCarModel';
 import { CarDetailsService } from '../services/car-details.service';
 import { CommonService } from '../services/common.service';
@@ -17,23 +17,22 @@ import { CommonModule } from '@angular/common';
 export class Step2Component implements OnInit {
 
 carConfigOptional?:ConfigOptionalModel;
-
-selectedConfig?:ConfigModle;
+selectedConfig?:ConfigModel;
 isTowHitchCheck:boolean=false;
 isYokeCheck:boolean= false;
 
 selectedCarModel:SelectedCarModel = new SelectedCarModel();
 
-constructor(private carDetailsService:CarDetailsService ,private commonService:CommonService){}
+constructor(private carDetailsService: CarDetailsService ,private commonService: CommonService){}
 ngOnInit(){
-  this.commonService.chooseCarObservable.subscribe(
+this.commonService.chooseCarObservable.subscribe(
 (selectedCarModel:SelectedCarModel)=>
   {
   this.selectedCarModel=selectedCarModel;
  this.carDetailsService.getCarOptions(this.selectedCarModel.chooseModel?.code!).subscribe(
   (options:ConfigOptionalModel)=>{
     this.carConfigOptional=options;
-    this.selectedConfig=this.carConfigOptional?.carConfigruation.find(x=>x.id==this.selectedCarModel.chooseConfig?.id);
+    this.selectedConfig=this.carConfigOptional?.configs.find(x => x.id==this.selectedCarModel.chooseConfig?.id);
     this.isYokeCheck=this.selectedCarModel.yoke;
     this.isTowHitchCheck= this.selectedCarModel.tow;
   }

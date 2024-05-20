@@ -16,7 +16,9 @@ export class CarDetailsService {
     return this.http.get<Array<Model>>("/models");
   }
 
-  getCarOptions(id: string):Observable<ConfigOptionalModel>{
-    return this.http.get<ConfigOptionalModel>('/options/${id}');
+ 
+  getCarOptions(id: string):Observable<ConfigOptionalModel>
+  {
+    return this.http.get<ConfigOptionalModel>(`/options/${id}`);
   }
 }

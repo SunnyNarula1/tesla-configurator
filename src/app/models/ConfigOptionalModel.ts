@@ -1,7 +1,7 @@
-import { ConfigModle } from "./ConfigModel";
+import { ConfigModel } from "./ConfigModel";
 
 export class ConfigOptionalModel{
-    carConfigruation!:ConfigModle[];
+    configs!:ConfigModel[];
     towHitch!:boolean;
     yoke!:boolean;
 }
